@@ -4,7 +4,7 @@ import Navbar from "../components/Header/Navbar";
 
 const About = () => {
   return (
-    <>
+    <div className="bg-white">
       <Helmet>
         <title>About - The Dragon News</title>
       </Helmet>
@@ -18,7 +18,7 @@ const About = () => {
           </div>
         </section>
       </main>
-    </>
+    </div>
   );
 };
 

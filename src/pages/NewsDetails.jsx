@@ -25,7 +25,7 @@ const NewsDetails = () => {
   const {image_url, title, details, category_id} = news;
 
   return (
-    <>
+    <div className="bg-white">
       <Helmet>
         <title>News Details - The Dragon News</title>
       </Helmet>
@@ -59,7 +59,7 @@ const NewsDetails = () => {
           <RightSidebar />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

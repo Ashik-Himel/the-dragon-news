@@ -11,7 +11,7 @@ const Home = () => {
   const {pathname} = useLocation();
 
   return (
-    <>
+    <div className="bg-white">
       <Helmet>
         <title>The Dragon News</title>
       </Helmet>
@@ -30,7 +30,7 @@ const Home = () => {
           <RightSidebar />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
