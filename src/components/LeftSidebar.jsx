@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import SidebarCard from "./SidebarCard";
+import { UserContext } from "../ContextProvider";
+import { FaCircleXmark } from "react-icons/fa6";
 
 
 const LeftSidebar = () => {
   const {pathname} = useLocation();
   const [categories, setCategories] = useState([]);
   const [newses, setNewses] = useState([]);
+  const {leftSidebarShow, setLeftSidebarShow} = useContext(UserContext);
 
   useEffect(() => {
     fetch('/data/categories.json')
@@ -20,7 +23,8 @@ const LeftSidebar = () => {
   }, [])
 
   return (
-    <aside className="md:sticky top-6">
+    <aside className="bg-white w-[300px] xl:w-full fixed top-0 -left-full bottom-0 xl:sticky xl:top-6 overflow-y-auto z-10 px-4 pb-8 pt-14 xl:p-0 border-e-2 xl:border-0 border-gray transition-[left]" style={leftSidebarShow ? {left: '0'} : {}}>
+      <FaCircleXmark className='xl:hidden absolute top-4 right-4 text-2xl text-primary' onClick={() => setLeftSidebarShow(!leftSidebarShow)} />
       {/* Categories Section */}
       <section>
         <h3 className="text-2xl font-semibold mb-4">All Category</h3>

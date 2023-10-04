@@ -5,11 +5,17 @@ export const UserContext = createContext(null);
 
 const ContextProvider = ({children}) => {
   const [user, setUser] = useState(null);
+  const [leftSidebarShow, setLeftSidebarShow] = useState(false);
+  const [rightSidebarShow, setRightSidebarShow] = useState(false);
 
 
   const value = {
     user,
-    setUser
+    setUser,
+    leftSidebarShow,
+    setLeftSidebarShow,
+    rightSidebarShow,
+    setRightSidebarShow
   }
 
   return (
