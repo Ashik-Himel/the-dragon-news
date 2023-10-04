@@ -5,6 +5,7 @@ import Header from "../components/Header/Header";
 import RightSidebar from "../components/RightSidebar";
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import EditorsInsightCard from "../components/EditorsInsightCard";
+import Navbar from "../components/Header/Navbar";
 
 const NewsDetails = () => {
   const [thisCat3Newses, setThisCat3Newses] = useState([]);
@@ -30,9 +31,10 @@ const NewsDetails = () => {
       </Helmet>
 
       <Header />
+      <Navbar />
 
       <div className="container my-8">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] items-start gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-[1fr_300px] items-start gap-8">
           <main>
             <section>
               <h3 className="text-2xl font-semibold mb-6">Dragon News</h3>

@@ -12,8 +12,8 @@ const Navbar = () => {
     <nav className="py-4 bg-white sticky top-0 z-20 border-b-2 border-[#E7E7E7]">
       <div className="container">
         <div className="grid grid-cols-3 justify-between items-center gap-6">
-          <RiMenu2Line className="md:hidden text-xl me-auto" onClick={() => setLeftSidebarShow(!leftSidebarShow)} />
-          <ul className="md:col-start-2 text-gray flex justify-center items-center gap-2 sm:gap-6">
+          <RiMenu2Line className="md:hidden text-xl me-auto cursor-pointer" onClick={() => setLeftSidebarShow(!leftSidebarShow)} />
+          <ul className="md:col-start-2 text-gray flex justify-center items-center gap-4 sm:gap-6">
             <li>
               <NavLink to='/' className={({isActive}) => isActive && 'text-secondary font-semibold underline underline-offset-2'}>Home</NavLink>
             </li>
@@ -29,7 +29,7 @@ const Navbar = () => {
             {
               !user ? <Link to='/login' className="btn btn-secondary hidden sm:inline-flex">Login</Link> : <span className="hidden sm:block">user?.displayName</span>
             }
-            <RiMenu3Line className="xl:hidden text-xl ms-auto md:ms-4" onClick={() => setRightSidebarShow(!rightSidebarShow)} />
+            <RiMenu3Line className="xl:hidden text-xl ms-auto md:ms-4 cursor-pointer" onClick={() => setRightSidebarShow(!rightSidebarShow)} />
           </div>
         </div>
       </div>
