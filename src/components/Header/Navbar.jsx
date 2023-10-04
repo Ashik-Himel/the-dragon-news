@@ -1,10 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import userIcon from "../../assets/images/user.png";
 import { useContext } from "react";
 import { UserContext } from "../../ContextProvider";
 import { RiMenu2Line, RiMenu3Line } from 'react-icons/ri';
 
 const Navbar = () => {
+  const {pathname} = useLocation();
   const {user} = useContext(UserContext);
   const {leftSidebarShow ,setLeftSidebarShow, rightSidebarShow, setRightSidebarShow} = useContext(UserContext);
 
@@ -12,7 +13,7 @@ const Navbar = () => {
     <nav className="py-4 bg-white sticky top-0 z-20 border-b-2 border-[#E7E7E7]">
       <div className="container">
         <div className="grid grid-cols-3 justify-between items-center gap-6">
-          <RiMenu2Line className="md:hidden text-xl me-auto cursor-pointer" onClick={() => setLeftSidebarShow(!leftSidebarShow)} />
+          <RiMenu2Line className="md:hidden text-xl me-auto cursor-pointer" style={pathname.startsWith('/details') ? {visibility: "hidden"} : {}} onClick={() => setLeftSidebarShow(!leftSidebarShow)} />
           <ul className="md:col-start-2 text-gray flex justify-center items-center gap-4 sm:gap-6">
             <li>
               <NavLink to='/' className={({isActive}) => isActive && 'text-secondary font-semibold underline underline-offset-2'}>Home</NavLink>
