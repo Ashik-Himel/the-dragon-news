@@ -9,7 +9,7 @@ const Navbar = () => {
   const {leftSidebarShow ,setLeftSidebarShow, rightSidebarShow, setRightSidebarShow} = useContext(UserContext);
 
   return (
-    <nav className="my-5 bg-white">
+    <nav className="py-4 bg-white sticky top-0 z-20 border-b-2 border-[#E7E7E7]">
       <div className="container">
         <div className="grid grid-cols-3 justify-between items-center gap-6">
           <RiMenu2Line className="md:hidden text-xl me-auto" onClick={() => setLeftSidebarShow(!leftSidebarShow)} />

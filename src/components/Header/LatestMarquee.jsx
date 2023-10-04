@@ -12,7 +12,7 @@ const LatestMarquee = () => {
   }, [])
 
   return (
-    <section className="my-5">
+    <section>
       <div className="container">
         <div className="bg-[#F3F3F3] p-4 flex justify-center items-center gap-4">
           <button className="btn btn-primary">Latest</button>

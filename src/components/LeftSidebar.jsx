@@ -4,7 +4,6 @@ import SidebarCard from "./SidebarCard";
 import { UserContext } from "../ContextProvider";
 import { FaCircleXmark } from "react-icons/fa6";
 
-
 const LeftSidebar = () => {
   const {pathname} = useLocation();
   const [categories, setCategories] = useState([]);
@@ -23,8 +22,8 @@ const LeftSidebar = () => {
   }, [])
 
   return (
-    <aside className="bg-white w-[300px] xl:w-full fixed top-0 -left-full bottom-0 xl:sticky xl:top-6 overflow-y-auto z-10 px-4 pb-8 pt-14 xl:p-0 border-e-2 xl:border-0 border-gray transition-[left]" style={leftSidebarShow ? {left: '0'} : {}}>
-      <FaCircleXmark className='xl:hidden absolute top-4 right-4 text-2xl text-primary' onClick={() => setLeftSidebarShow(!leftSidebarShow)} />
+    <aside className="bg-white w-[300px] md:w-full fixed top-0 -left-full bottom-0 md:sticky md:top-[96px] overflow-y-auto z-30 md:z-10 px-4 pb-8 pt-14 md:p-0 border-e-2 md:border-0 border-gray [box-shadow:15px_0px_30px_0px_rgba(0,0,0,0.4)] transition-[left]" style={leftSidebarShow ? {left: '0'} : {}}>
+      <FaCircleXmark className='md:hidden absolute top-4 right-4 text-2xl text-primary' onClick={() => setLeftSidebarShow(!leftSidebarShow)} />
       {/* Categories Section */}
       <section>
         <h3 className="text-2xl font-semibold mb-4">All Category</h3>

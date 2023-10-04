@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 
 const Header = () => {
   return (
-    <header className="mt-6 mb-5 text-center">
+    <header className="my-5 text-center">
       <div className="container">
         <Link to='/'><img className="w-[280px] sm:w-[350px] mx-auto mb-3" src={logo} alt="Logo" /></Link>
         <p className="mb-1 text-gray">Journalism Without Fear or Favour</p>

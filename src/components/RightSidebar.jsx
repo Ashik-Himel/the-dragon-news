@@ -18,7 +18,7 @@ const RightSidebar = () => {
   const {rightSidebarShow, setRightSidebarShow} = useContext(UserContext)
 
   return (
-    <aside className="bg-white w-[300px] xl:w-full fixed -right-full top-0 bottom-0 xl:sticky xl:top-6 overflow-y-auto z-10 px-4 pb-8 pt-14 xl:p-0 border-s-2 xl:border-0 border-gray transition-[right]" style={rightSidebarShow ? {right: '0'} : {}}>
+    <aside className="bg-white w-[300px] xl:w-full fixed -right-full top-0 bottom-0 xl:sticky xl:top-[96px] overflow-y-auto z-30 xl:z-10 px-4 pb-8 pt-14 xl:p-0 border-s-2 xl:border-0 border-gray [box-shadow:-15px_0px_30px_0px_rgba(0,0,0,0.4)] transition-[right]" style={rightSidebarShow ? {right: '0'} : {}}>
       <FaCircleXmark className='xl:hidden absolute top-4 left-4 text-2xl text-primary' onClick={() => setRightSidebarShow(!rightSidebarShow)} />
       {/* Login Section */}
       {
