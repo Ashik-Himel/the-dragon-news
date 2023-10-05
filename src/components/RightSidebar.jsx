@@ -16,7 +16,7 @@ import { FaCircleXmark } from 'react-icons/fa6';
 import toast from "react-hot-toast";
 
 const RightSidebar = () => {
-  const {user, setUser, googleSignIn, githubSignIn, signOutFunc, rightSidebarShow, setRightSidebarShow} = useContext(UserContext);
+  const {user, setUser, googleSignIn, githubSignIn, signOutFunc, userLoaded, rightSidebarShow, setRightSidebarShow} = useContext(UserContext);
 
   const handleSignIn = (method) => {
     method()
@@ -29,14 +29,13 @@ const RightSidebar = () => {
       .then(() => toast.success("Successfully logged out !!!"))
       .catch((error) => toast.error(error.message))
   }
-  console.log(user);
 
   return (
     <aside className="bg-white w-[300px] xl:w-full fixed -right-full top-0 bottom-0 xl:sticky xl:top-[96px] overflow-y-auto z-30 xl:z-10 px-4 pb-8 pt-14 xl:p-0 border-s-2 xl:border-0 border-gray [box-shadow:-15px_0px_30px_0px_rgba(0,0,0,0.4)] xl:shadow-none transition-[right]" style={rightSidebarShow ? {right: '0'} : {}}>
       <FaCircleXmark className='xl:hidden absolute top-4 left-4 text-2xl text-primary cursor-pointer' onClick={() => setRightSidebarShow(!rightSidebarShow)} />
       {/* Login Section */}
       {
-        !user ? <section>
+        userLoaded ? !user ? <section>
           <h3 className="text-2xl font-semibold mb-4">Login With</h3>
           <LoginWithButton method="Google" image={googleIcon} event={() => handleSignIn(googleSignIn)} />
           <LoginWithButton method="Github" image={githubIcon} event={() => handleSignIn(githubSignIn)} />
@@ -48,7 +47,7 @@ const RightSidebar = () => {
           <img src={user?.photoURL} alt="User's Photo" className="rounded-full w-20 mx-auto mb-2" />
           <h4 className="mb-3">{user?.displayName}</h4>
           <button className="btn btn-warning !text-black !rounded-md" onClick={handleSignOut}>Logout</button>
-        </section>
+        </section> : ''
       }
 
       {/* Find Us Section */}

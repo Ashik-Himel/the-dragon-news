@@ -20,7 +20,6 @@ const NewsDetails = () => {
         setThisCat3Newses(data.sort((a, b) => b.total_view - a.total_view).filter(item => item._id !== news._id).slice(0, 3))
       })
   }, [id, news._id])
-  console.log(thisCat3Newses);
   
   const {image_url, title, details, category_id} = news;
 

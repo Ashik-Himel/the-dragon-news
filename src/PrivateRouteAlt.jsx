@@ -4,12 +4,12 @@ import { useContext } from "react";
 import { UserContext } from "./ContextProvider";
 
 const PrivateRouteAlt = ({children}) => {
-  const {user} = useContext(UserContext);
+  const {user, userLoaded} = useContext(UserContext);
 
   return (
     <>
       {
-        !user ? children : <Navigate to='/' />
+        userLoaded ? !user ? children : <Navigate to='/' /> : ''
       }
     </>
   );

@@ -6,8 +6,7 @@ import { PiUserCircleFill } from 'react-icons/pi';
 
 const Navbar = () => {
   const {pathname} = useLocation();
-  const {user} = useContext(UserContext);
-  const {leftSidebarShow ,setLeftSidebarShow, rightSidebarShow, setRightSidebarShow} = useContext(UserContext);
+  const {user, userLoaded, leftSidebarShow ,setLeftSidebarShow, rightSidebarShow, setRightSidebarShow} = useContext(UserContext);
 
   return (
     <nav className="py-4 bg-[inherit] sticky top-0 z-20 border-b-2 border-[#E7E7E7]">
@@ -27,10 +26,13 @@ const Navbar = () => {
           </ul>
           <div className="flex justify-end items-center gap-4">
             {
-              user ? <img className="w-10 hidden sm:block rounded-full" src={user?.photoURL} alt="User's Photo" /> : <PiUserCircleFill className="text-[40px] hidden sm:block" />
-            }
-            {
-              !user ? <Link to='/login' className="btn btn-secondary hidden sm:inline-flex">Login</Link> : <span className="font-medium hidden md:block">{user?.displayName?.split(' ')[0]}</span>
+              userLoaded ? user ? <>
+                <img className="w-10 hidden sm:block rounded-full" src={user?.photoURL} alt="User's Photo" />
+                <span className="font-medium hidden md:block">{user?.displayName?.split(' ')[0]}</span>
+              </> : <>
+                <PiUserCircleFill className="text-[40px] hidden sm:block" />
+                <Link to='/login' className="btn btn-secondary hidden sm:inline-flex">Login</Link>
+              </> : <button className="font-semibold hidden sm:inline-flex">Loading...</button>
             }
             <RiMenu3Line className="xl:hidden text-xl justify-self-end cursor-pointer" style={pathname.includes('/login') || pathname.includes('/register') || pathname.includes('/about') || pathname.includes('/career') ? {display: 'none'} : {}} onClick={() => setRightSidebarShow(!rightSidebarShow)} />
           </div>
