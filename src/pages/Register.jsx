@@ -49,7 +49,7 @@ const Register = () => {
 
       <main className="pb-8">
         <div className="container">
-          <div className="mt-16 max-w-[600px] mx-auto bg-white px-6 py-10 rounded-md">
+          <div className="mt-8 sm:mt-16 max-w-[600px] mx-auto bg-white px-6 py-10 rounded-md">
             <h2 className="text-2xl font-semibold text-center mb-6">Register your account</h2>
             <hr className="text-[#E7E7E7] mb-6" />
 
