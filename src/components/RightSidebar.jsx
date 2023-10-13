@@ -14,18 +14,20 @@ import QZone3 from "../assets/images/qZone3.png";
 import adBg from "../assets/images/bg.png"
 import { FaCircleXmark } from 'react-icons/fa6';
 import toast from "react-hot-toast";
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { auth } from "../firebase.config";
 
 const RightSidebar = () => {
-  const {user, setUser, googleSignIn, githubSignIn, signOutFunc, userLoaded, rightSidebarShow, setRightSidebarShow} = useContext(UserContext);
+  const {user, setUser, userLoaded, rightSidebarShow, setRightSidebarShow} = useContext(UserContext);
 
-  const handleSignIn = (method) => {
-    method()
+  const handleSignIn = (provider) => {
+    signInWithPopup(auth, new provider())
       .then(result => setUser(result.user))
       .then(() => toast.success("Login Successful !!!"))
       .catch(error => toast.error(error.message))
   }
   const handleSignOut = () => {
-    signOutFunc()
+    signOut(auth)
       .then(() => toast.success("Successfully logged out !!!"))
       .catch((error) => toast.error(error.message))
   }
@@ -37,11 +39,11 @@ const RightSidebar = () => {
       {
         userLoaded ? !user ? <section>
           <h3 className="text-2xl font-semibold mb-4">Login With</h3>
-          <LoginWithButton method="Google" image={googleIcon} event={() => handleSignIn(googleSignIn)} />
-          <LoginWithButton method="Github" image={githubIcon} event={() => handleSignIn(githubSignIn)} />
+          <LoginWithButton method="Google" image={googleIcon} event={() => handleSignIn(GoogleAuthProvider)} />
+          <LoginWithButton method="Github" image={githubIcon} event={() => handleSignIn(GithubAuthProvider)} />
           <div className="mt-4 space-y-2">
             <span className="text-center block font-medium">Or</span>
-            <Link to='/login' className="btn btn-secondary w-full !rounded-md">Login</Link>
+            <Link to='/login' className="btn btn-secondary w-full !rounded-md" onClick={() => scrollTo(0, 0)}>Login</Link>
           </div>
         </section> : <section className="text-center">
           <img src={user?.photoURL} alt="User's Photo" className="rounded-full w-20 mx-auto mb-2" />

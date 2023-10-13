@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import PropTypes from "prop-types";
 import { auth } from "./firebase.config";
 import { useEffect } from "react";
@@ -12,26 +12,6 @@ const ContextProvider = ({children}) => {
   const [leftSidebarShow, setLeftSidebarShow] = useState(false);
   const [rightSidebarShow, setRightSidebarShow] = useState(false);
 
-  const createUser = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
-  }
-  const updateUser = (info) => {
-    return updateProfile(auth.currentUser, info);
-  }
-  const signInUser = (email, password) => {
-    return signInWithEmailAndPassword(email, password);
-  }
-  const googleSignIn = () => {
-    const googleProvider = new GoogleAuthProvider();
-    return signInWithPopup(auth, googleProvider);
-  }
-  const githubSignIn = () => {
-    const githubProvider = new GithubAuthProvider();
-    return signInWithPopup(auth, githubProvider);
-  }
-  const signOutFunc = () => {
-    return signOut(auth);
-  }
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -43,12 +23,6 @@ const ContextProvider = ({children}) => {
   const value = {
     user,
     setUser,
-    createUser,
-    updateUser,
-    signInUser,
-    googleSignIn,
-    githubSignIn,
-    signOutFunc,
     userLoaded,
     leftSidebarShow,
     setLeftSidebarShow,

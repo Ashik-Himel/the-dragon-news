@@ -7,7 +7,7 @@ const SidebarCard = ({news, categories}) => {
   const {_id, thumbnail_url , title, category_id, author} = news;
 
   return (
-    <Link to={`/details/${_id}`}>
+    <Link to={`/details/${_id}`} onClick={() => scrollTo(0, 0)}>
       <img className="w-full aspect-[4/3] object-cover object-top rounded-xl mb-3" src={thumbnail_url} alt='Thumbnail' />
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <div className="flex justify-between items-center gap-4 mb-8 text-gray">

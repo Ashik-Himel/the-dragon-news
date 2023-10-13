@@ -2,12 +2,12 @@ import { Helmet } from "react-helmet-async";
 import Navbar from "../components/Header/Navbar";
 import { Link } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { useContext, useState } from "react";
-import { UserContext } from "../ContextProvider";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../firebase.config";
 
 const Register = () => {
-  const {createUser, updateUser} = useContext(UserContext);
   const [showPass, setShowPass] = useState(false);
   const [showEye, setShowEye] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -22,26 +22,22 @@ const Register = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     
-    createUser(email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        toast.success("Registration Successful !!!");
-        console.log(userCredential.user);
+        updateProfile(auth.currentUser, {displayName, photoURL})
+          .then(() => {
+            toast.success("Registration Successful !!!");
+            console.log(userCredential.user);
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          })
       })
       .catch((error) => {
-        console.log(error.message);
+        toast.error(error.message);
       })
-
-      updateUser({displayName : displayName, photoURL: photoURL})
-        .then(() => {
-          toast.success("Registration Successful !!!");
-          e.target.reset();
-        })
-        .catch((error) => {
-          console.log(error.message);
-        })
-
-    setIsActive(false);
   }
+  
   const handlePassOnChange = e => {
     setIsActive(false);
     setErrorMsg("");
@@ -98,12 +94,12 @@ const Register = () => {
 
               <div className="flex items-center gap-1 mb-6">
                 <input className="cursor-pointer" type="checkbox" name="terms_and_conditions" id="terms_and_conditions" required />
-                <label htmlFor="terms_and_conditions" className="text-gray">Accept <Link className="font-semibold">Terms and Conditions</Link></label>
+                <label htmlFor="terms_and_conditions" className="text-gray">Accept <Link className="font-semibold" onClick={() => scrollTo(0, 0)}>Terms and Conditions</Link></label>
               </div>
 
               <button type="submit" className="btn btn-secondary w-full !min-h-[48px] !rounded-md mb-6" disabled={isActive ? "" : "disabled"}>Register</button>
             </form>
-            <p className="font-semibold text-center">Already have an account? <Link to='/login' className="text-primary">Login</Link></p>
+            <p className="font-semibold text-center">Already have an account? <Link to='/login' className="text-primary" onClick={() => scrollTo(0, 0)}>Login</Link></p>
           </div>
         </div>
       </main>

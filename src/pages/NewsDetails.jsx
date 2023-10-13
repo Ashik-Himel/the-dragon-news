@@ -40,7 +40,7 @@ const NewsDetails = () => {
               <img src={image_url} alt="News Photo" className="mb-6" />
               <h2 className="text-3xl font-bold mb-2">{title}</h2>
               <p className="text-gray mb-6">{details}</p>
-              <Link to={`/${category_id}`} className="btn btn-primary">
+              <Link to={`/${category_id}`} className="btn btn-primary" onClick={() => scrollTo(0, 0)}>
                 <AiOutlineArrowLeft />
                 All news in this category
               </Link>

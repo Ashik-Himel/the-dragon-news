@@ -1,13 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import Navbar from "../components/Header/Navbar";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { UserContext } from "../ContextProvider";
 import toast from "react-hot-toast";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase.config";
 
 const Login = () => {
-  const {signInUser} = useContext(UserContext);
   const [showPass, setShowPass] = useState(false);
   const [showEye, setShowEye] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -20,16 +20,14 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    signInUser(email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         toast.success("Login Successful !!!");
         console.log(userCredential.user);
-        e.target.reset();
       })
       .catch((error) => {
-        console.log(error.message);
+        toast.error(error.message);
       })
-    setIsActive(false);
   }
   const handlePassOnChange = e => {
     setIsActive(false);
@@ -79,7 +77,7 @@ const Login = () => {
               <p className="text-primary font-semibold mb-5">{errorMsg}</p>
               <button type="submit" className="btn btn-secondary w-full !min-h-[48px] !rounded-md mb-6" disabled={isActive ? "" : "disabled"}>Login</button>
             </form>
-            <p className="font-semibold text-center">Don&apos;t have an account? <Link to='/register' className="text-primary">Register</Link></p>
+            <p className="font-semibold text-center">Don&apos;t have an account? <Link to='/register' className="text-primary" onClick={() => scrollTo(0, 0)}>Register</Link></p>
           </div>
         </div>
       </main>

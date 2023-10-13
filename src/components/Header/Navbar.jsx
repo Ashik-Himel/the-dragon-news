@@ -31,7 +31,7 @@ const Navbar = () => {
                 <span className="font-medium hidden md:block">{user?.displayName?.split(' ')[0]}</span>
               </> : <>
                 <PiUserCircleFill className="text-[40px] hidden sm:block" />
-                <Link to='/login' className="btn btn-secondary hidden sm:inline-flex">Login</Link>
+                <Link to='/login' className="btn btn-secondary hidden sm:inline-flex" onClick={() => scrollTo(0, 0)}>Login</Link>
               </> : <button className="font-semibold hidden sm:inline-flex">Loading...</button>
             }
             <RiMenu3Line className="xl:hidden text-xl justify-self-end cursor-pointer" style={pathname.includes('/login') || pathname.includes('/register') || pathname.includes('/about') || pathname.includes('/career') ? {display: 'none'} : {}} onClick={() => setRightSidebarShow(!rightSidebarShow)} />

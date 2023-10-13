@@ -30,7 +30,7 @@ const NewsCard = ({news}) => {
         <h3 className="text-2xl font-bold mb-4">{title}</h3>
         <img className="w-full rounded-md mb-6" src={image_url} alt="News Image" />
         <p className="text-gray">{details.slice(0, 250)}...</p>
-        <Link to={`/details/${_id}`} className="font-semibold text-[#FF8C47] text-[18px] mb-4 block">Read More</Link>
+        <Link to={`/details/${_id}`} className="font-semibold text-[#FF8C47] text-[18px] mb-4 block" onClick={() => scrollTo(0, 0)}>Read More</Link>
         <hr className="text-[#E7E7E7] mb-4" />
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">

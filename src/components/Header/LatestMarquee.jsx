@@ -18,7 +18,7 @@ const LatestMarquee = () => {
           <button className="btn btn-primary">Latest</button>
           <Marquee speed='70' pauseOnHover={true} className="font-semibold">
             {
-              newses.filter(news => news.others_info.is_trending).slice(0, 5).map(news => <Link to={`/details/${news._id}`} key={news._id} className="hover:text-blue-700 hover:underline hover:underline-offset-2 mr-8">{news.title}</Link>)
+              newses.filter(news => news.others_info.is_trending).slice(0, 5).map(news => <Link to={`/details/${news._id}`} key={news._id} className="hover:text-blue-700 hover:underline hover:underline-offset-2 mr-8" onClick={() => scrollTo(0, 0)}>{news.title}</Link>)
             }
           </Marquee>
         </div>
